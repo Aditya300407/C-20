@@ -1,7 +1,206 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 html, body {
   margin: 0;
   padding: 0;
+  background: #0a0a1a;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
 }
-canvas {
+
+#game-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 8px;
+  height: calc(100vh - 180px);
+  min-height: 400px;
+}
+
+#canvas-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+#game-canvas {
   display: block;
+  border: 2px solid #444;
+  background: #111;
+}
+
+#sidebar-left,
+#sidebar-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 80px;
+  max-width: 100px;
+  padding-top: 4px;
+}
+
+.info-box {
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+#next-canvas {
+  display: block;
+  margin: 4px auto 0;
+  background: #111;
+  border-radius: 2px;
+}
+
+#pause-btn {
+  background: #1a1a2e;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  padding: 8px 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.1s;
+}
+
+#pause-btn:active {
+  background: #2a2a4e;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+#overlay-content {
+  text-align: center;
+  padding: 20px;
+}
+
+#overlay-title {
+  font-size: 32px;
+  letter-spacing: 6px;
+  margin: 0 0 10px;
+  color: #00d4ff;
+  text-shadow: 0 0 20px #00d4ff88;
+}
+
+#overlay-message {
+  color: #aaa;
+  font-size: 13px;
+  margin: 0 0 20px;
+}
+
+#overlay-btn {
+  background: #00d4ff;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+#overlay-btn:active {
+  background: #00a8cc;
+}
+
+/* On-screen controls */
+#controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 8px;
+  background: #0d0d1f;
+  border-top: 1px solid #222;
+  height: 175px;
+}
+
+.controls-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  background: #1e1e3a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #ddd;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: bold;
+  width: 70px;
+  height: 46px;
+  cursor: pointer;
+  transition: background 0.08s, transform 0.05s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ctrl-btn:active {
+  background: #2e2e5a;
+  transform: scale(0.95);
+}
+
+.wide-btn {
+  width: 220px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 400px) {
+  #sidebar-left, #sidebar-right {
+    min-width: 60px;
+    max-width: 70px;
+  }
+  .info-value {
+    font-size: 14px;
+  }
+  #next-canvas {
+    width: 70px !important;
+    height: 70px !important;
+  }
 }
